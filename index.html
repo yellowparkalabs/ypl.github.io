@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yellow Parka Labs - Strategic Software Engineering Consulting</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #f59e0b;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #f59e0b;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #f59e0b;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(245, 158, 11, 0.4);
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+            background: #f8fafc;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: #1f2937;
+        }
+
+        .founder-section {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .founder-image {
+            text-align: center;
+        }
+
+        .founder-image img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid #f59e0b;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .founder-info h3 {
+            font-size: 2rem;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .founder-info .title {
+            color: #f59e0b;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .founder-info p {
+            font-size: 1.1rem;
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #f59e0b;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.3);
+        }
+
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            color: white;
+            padding: 3rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #f59e0b;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: #f59e0b;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: #6b7280;
+            line-height: 1.7;
+        }
+
+        /* Companies Section */
+        .companies {
+            padding: 5rem 0;
+            background: #f8fafc;
+        }
+
+        .companies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            align-items: center;
+        }
+
+        .company-logo {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+
+        .company-logo:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .company-logo img {
+            max-width: 150px;
+            max-height: 60px;
+            object-fit: contain;
+        }
+
+        .company-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-top: 1rem;
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, #f59e0b, #f97316);
+            padding: 2rem;
+            color: white;
+        }
+
+        .project-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-body {
+            padding: 2rem;
+        }
+
+        .project-body p {
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background: #f3f4f6;
+            color: #374151;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #f59e0b;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: #d97706;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-item i {
+            font-size: 2rem;
+            color: #f59e0b;
+            margin-bottom: 1rem;
+        }
+
+        .contact-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item a {
+            color: #f59e0b;
+            text-decoration: none;
+        }
+
+        /* Footer */
+        .footer {
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .founder-section {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .founder-image img {
+                width: 250px;
+                height: 250px;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .services-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Scroll animations */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .scroll-animate.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="#home" class="logo">Yellow Parka Labs</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Strategic Software Engineering Excellence</h1>
+            <p class="hero-subtitle">Transforming enterprise technology with 25+ years of innovation leadership, AI integration, and cloud-native solutions</p>
+            <a href="#contact" class="cta-button">Let's Transform Your Technology</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title scroll-animate">Meet The Founder</h2>
+            <div class="founder-section scroll-animate">
+                <div class="founder-image">
+                    <img src="https://media.licdn.com/dms/image/v2/C5603AQHxK3zOx_w0Rg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1517007909334?e=1738800000&v=beta&t=8KOA5gvMRMjUi6qBD3WYcvvhMHG5sV4QVa-5cQD5vHw" alt="Sanjeev Sharma - Founder">
+                </div>
+                <div class="founder-info">
+                    <h3>Sanjeev Sharma</h3>
+                    <p class="title">Strategic Software Engineering Leader & Technology Consultant</p>
+                    <p>With over 25 years of experience driving innovation and operational excellence, Sanjeev has led 180+ technologists to deliver cloud-native platforms and optimize software development lifecycles for global enterprises.</p>
+                    <p>As the founder of Yellow Parka Labs, he specializes in AI integration, platform modernization, and strategic technology consulting, helping organizations leverage emerging technologies to enhance customer experience and drive business growth.</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/ssanjeev" target="_blank">
+                            <i class="fab fa-linkedin"></i> LinkedIn Profile
+                        </a>
+                        <a href="mailto:reachsanbymail@gmail.com">
+                            <i class="fas fa-envelope"></i> Contact
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid scroll-animate">
+                <div class="stat-item">
+                    <h3>25+</h3>
+                    <p>Years of Experience</p>
+                </div>
+                <div class="stat-item">
+                    <h3>180+</h3>
+                    <p>Technologists Led</p>
+                </div>
+                <div class="stat-item">
+                    <h3>$10M+</h3>
+                    <p>Revenue Generated</p>
+                </div>
+                <div class="stat-item">
+                    <h3>99.9%</h3>
+                    <p>Platform Uptime</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title scroll-animate">Strategic Consulting Services</h2>
+            <div class="services-grid">
+                <div class="service-card scroll-animate">
+                    <div class="service-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI Integration & Transformation</h3>
+                    <p>Champion organizational AI transformation by guiding teams in efficient utilization of AI tools and services, resulting in enhanced productivity and innovation delivery.</p>
+                </div>
+                <div class="service-card scroll-animate">
+                    <div class="service-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud-Native Platform Modernization</h3>
+                    <p>Transform legacy systems into scalable, cloud-native architectures using Azure, AWS, and GCP with microservices, Kubernetes, and modern DevOps practices.</p>
+                </div>
+                <div class="service-card scroll-animate">
+                    <div class="service-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>DevOps & CI/CD Optimization</h3>
+                    <p>Implement automated testing, quality gates, and continuous integration pipelines to enhance software delivery reliability and reduce deployment time by 40%.</p>
+                </div>
+                <div class="service-card scroll-animate">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Quality Assurance & Verification</h3>
+                    <p>Establish comprehensive IV&V processes, AI-enhanced code reviews, and quality metrics to ensure software quality standards across all deliverables.</p>
+                </div>
+                <div class="service-card scroll-animate">
+                    <div class="service-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Technical Leadership & Team Building</h3>
+                    <p>Guide cross-functional teams in adopting best practices, implementing Agile/SAFe methodologies, and building high-performance engineering cultures.</p>
+                </div>
+                <div class="service-card scroll-animate">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Digital Transformation Strategy</h3>
+                    <p>Provide strategic guidance on platform modernization, risk mitigation, scalability planning, and technology roadmaps aligned with business objectives.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Companies Section -->
+    <section class="companies">
+        <div class="container">
+            <h2 class="section-title scroll-animate">Trusted by Industry Leaders</h2>
+            <div class="companies-grid">
+                <div class="company-logo scroll-animate">
+                    <div class="company-name">Avaya Inc.</div>
+                    <p style="font-size: 0.9rem; color: #6b7280; margin-top: 0.5rem;">Senior Director, Software Development</p>
+                </div>
+                <div class="company-logo scroll-animate">
+                    <div class="company-name">Charles Schwab</div>
+                    <p style="font-size: 0.9rem; color: #6b7280; margin-top: 0.5rem;">Managing Director, Software Development</p>
+                </div>
+                <div class="company-logo scroll-animate">
+                    <div class="company-name">Sabre Inc.</div>
+                    <p style="font-size: 0.9rem; color: #6b7280; margin-top: 0.5rem;">Director, Software Development</p>
+                </div>
+                <div class="company-logo scroll-animate">
+                    <div class="company-name">HCTRA</div>
+                    <p style="font-size: 0.9rem; color: #6b7280; margin-top: 0.5rem;">Technology Consultant</p>
+                </div>
+                <div class="company-logo scroll-animate">
+                    <div class="company-name">Singapore Airlines</div>
+                    <p style="font-size: 0.9rem; color: #6b7280; margin-top: 0.5rem;">Crew Management Solutions</p>
+                </div>
+                <div class="company-logo scroll-animate">
+                    <div class="company-name">Japan Airlines</div>
+                    <p style="font-size: 0.9rem; color: #6b7280; margin-top: 0.5rem;">Aviation Technology Solutions</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title scroll-animate">Featured Projects & Solutions</h2>
+            <div class="projects-grid">
+                <div class="project-card scroll-animate">
+                    <div class="project-header">
+                        <h3>FuegoTag Self-Service Portal</h3>
+                        <p>Complete Portal Redesign</p>
+                    </div>
+                    <div class="project-body">
+                        <p>Led end-to-end rewrite of user-friendly self-service portal, transforming user experience through modern web technologies and intuitive design principles.</p>
+                        <div class="project-tags">
+                            <span class="tag">Angular</span>
+                            <span class="tag">Java</span>
+                            <span class="tag">UX Design</span>
+                            <span class="tag">API Integration</span>
+                        </div>
+                        <a href="https://fuegotag.org" class="project-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> View Live Portal
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="project-card scroll-animate">
+                    <div class="project-header">
+                        <h3>CCRMA Toll Platform</h3>
+                        <p>Enterprise Tolling Solution</p>
+                    </div>
+                    <div class="project-body">
+                        <p>Spearheaded design and delivery of comprehensive tolling platform using Angular and Java, significantly enhancing user experience and operational efficiency.</p>
+                        <div class="project-tags">
+                            <span class="tag">Angular</span>
+                            <span class="tag">Java Spring</span>
+                            <span class="tag">Microservices</span>
+                            <span class="tag">Cloud Native</span>
+                        </div>
+                        <a href="#contact" class="project-link">
+                            <i class="fas fa-info-circle"></i> Learn More
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-animate">
+                    <div class="project-header">
+                        <h3>AI-Powered Image Recognition</h3>
+                        <p>Computer Vision POC</p>
+                    </div>
+                    <div class="project-body">
+                        <p>Developed and deployed proof-of-concept for AI-powered image recognition system, demonstrating feasibility and ROI for computer vision applications.</p>
+                        <div class="project-tags">
+                            <span class="tag">AI/ML</span>
+                            <span class="tag">Computer Vision</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">Cloud AI</span>
+                        </div>
+                        <a href="#contact" class="project-link">
+                            <i class="fas fa-robot"></i> Explore AI Solutions
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-animate">
+                    <div class="project-header">
+                        <h3>Crew Management Suite</h3>
+                        <p>Award-Winning Aviation Solution</p>
+                    </div>
+                    <div class="project-body">
+                        <p>Built and launched award-winning Crew Management Suite generating $10M annual revenue, adopted by Singapore Airlines, Japan Airlines, and other major carriers.</p>
+                        <div class="project-tags">
+                            <span class="tag">Java Spring</span>
+                            <span class="tag">AWS</span>
+                            <span class="tag">Microservices</span>
+                            <span class="tag">Aviation</span>
+                        </div>
+                        <a href="#contact" class="project-link">
+                            <i class="fas fa-plane"></i> Aviation Solutions
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-animate">
+                    <div class="project-header">
+                        <h3>Azure Cloud-Native Platform</h3>
+                        <p>Social Channels Transformation</p>
+                    </div>
+                    <div class="project-body">
+                        <p>Directed 180 technologists in transforming on-premises social channels into Azure-based, cloud-native platform integrating Facebook, WhatsApp, Instagram, and Twitter.</p>
+                        <div class="project-tags">
+                            <span class="tag">Azure</span>
+                            <span class="tag">Microservices</span>
+                            <span class="tag">Kafka</span>
+                            <span class="tag">Redis</span>
+                        </div>
+                        <a href="#contact" class="project-link">
+                            <i class="fas fa-cloud"></i> Cloud Solutions
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card scroll-animate">
+                    <div class="project-header">
+                        <h3>Income Verification Module</h3>
+                        <p>AI-Powered Financial Assessment</p>
+                    </div>
+                    <div class="project-body">
+                        <p>Architected intelligent income verification solution leveraging AI/ML technologies to automate and streamline financial assessment processes.</p>
+                        <div class="project-tags">
+                            <span class="tag">AI/ML</span>
+                            <span class="tag">Document Processing</span>
+                            <span class="tag">Automation</span>
+                            <span class="tag">FinTech</span>
+                        </div>
+                        <a href="#contact" class="project-link">
+                            <i class="fas fa-dollar-sign"></i> FinTech Solutions
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title scroll-animate" style="color: white;">Ready to Transform Your Technology?</h2>
+            <p style="font-size: 1.2rem; opacity: 0.9; margin-bottom: 2rem;" class="scroll-animate">Let's discuss how Yellow Parka Labs can accelerate your digital transformation journey</p>
+            <div class="contact-info scroll-animate">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <h4>Email</h4>
+                    <a href="mailto:reachsanbymail@gmail.com">reachsanbymail@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <h4>Phone</h4>
+                    <a href="tel:469-865-3537">469-865-3537</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h4>Location</h4>
+                    <p>Dallas, TX</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <h4>LinkedIn</h4>
+                    <a href="https://www.linkedin.com/in/ssanjeev" target="_blank">Connect with Sanjeev</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Yellow Parka Labs LLC. All rights reserved. | Strategic Software Engineering Excellence</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background change on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Scroll animation for elements
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all scroll-animate elements
+        document.querySelectorAll('.scroll-animate').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add some interactive hover effects
+        document.querySelectorAll('.service-card, .project-card, .company-logo').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Dynamic typing effect for hero subtitle
+        const heroSubtitle = document.querySelector('.hero-subtitle');
+        const originalText = heroSubtitle.textContent;
+        
+        function typeWriter() {
+            heroSubtitle.textContent = '';
+            let i = 0;
+            const timer = setInterval(() => {
+                if (i < originalText.length) {
+                    heroSubtitle.textContent += originalText.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(timer);
+                }
+            }, 30);
+        }
+
+        // Start typing effect after page load
+        window.addEventListener('load', () => {
+            setTimeout(typeWriter, 1000);
+        });
+
+        // Add floating particles background effect
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.style.position = 'absolute';
+            particle.style.width = '4px';
+            particle.style.height = '4px';
+            particle.style.background = 'rgba(245, 158, 11, 0.3)';
+            particle.style.borderRadius = '50%';
+            particle.style.pointerEvents = 'none';
+            particle.style.left = Math.random() * window.innerWidth + 'px';
+            particle.style.top = window.innerHeight + 'px';
+            particle.style.zIndex = '1';
+            
+            document.querySelector('.hero').appendChild(particle);
+            
+            const animation = particle.animate([
+                { transform: 'translateY(0) rotate(0deg)', opacity: 0 },
+                { transform: 'translateY(-20px) rotate(180deg)', opacity: 1 },
+                { transform: 'translateY(-' + (window.innerHeight + 100) + 'px) rotate(360deg)', opacity: 0 }
+            ], {
+                duration: Math.random() * 3000 + 2000,
+                easing: 'linear'
+            });
+            
+            animation.onfinish = () => particle.remove();
+        }
+
+        // Create particles periodically
+        setInterval(createParticle, 300);
+
+        // Add click ripple effect to buttons
+        document.querySelectorAll('.cta-button, .project-link, .social-links a').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255, 255, 255, 0.5)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                ripple.style.pointerEvents = 'none';
+                
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Add CSS for ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Counter animation for stats
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = target + (element.textContent.includes('+') ? '+' : '') + (element.textContent.includes('%') ? '%' : '');
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(start) + (element.textContent.includes('+') ? '+' : '') + (element.textContent.includes('%') ? '%' : '');
+                }
+            }, 16);
+        }
+
+        // Trigger counter animation when stats section is visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statItems = entry.target.querySelectorAll('.stat-item h3');
+                    statItems.forEach(item => {
+                        const value = parseInt(item.textContent);
+                        if (!isNaN(value)) {
+                            animateCounter(item, value);
+                        }
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        statsObserver.observe(document.querySelector('.stats'));
+    </script>
+</body>
+</html>
+                
